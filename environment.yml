@@ -1,0 +1,10 @@
+name: nlpt
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - ffmpeg # needed by torchcodec to decode audio (chapter 11)
+  - notebook
+  - pip:
+      - -r requirements.txt

@@ -1,0 +1,52 @@
+# Base requirements
+# torch>=2.7 is needed for NVIDIA Blackwell GPUs (RTX 50xx); the default PyPI wheel ships CUDA 13.
+torch>=2.7
+torchvision
+# tokenizers>=0.23.1 has a bug that drops most overflow windows of `return_overflowing_tokens=True`
+# (https://github.com/huggingface/tokenizers/issues/2091), which breaks the QA sliding window in chapter 7.
+# transformers>=5.16 requires tokenizers>=0.23.1, so stay on 5.15 until the bug is fixed upstream.
+transformers[torch,sentencepiece,vision]>=5.15,<5.16
+tokenizers>=0.22,<0.23.1
+datasets>=5.0,<6
+evaluate>=0.4.6 # replaces the removed datasets.load_metric
+accelerate>=1.15
+huggingface_hub>=1.33
+matplotlib
+ipywidgets
+ipykernel
+pandas>=3
+numpy>=2
+scikit-learn>=1.9
+# Chapter 2 - Classification
+umap-learn>=0.5.12
+# Chapter 3 - Anatomy
+bertviz>=1.4.1
+# Chapter 4 - NER
+seqeval==1.2.2
+# Chapter 6 - Summarization
+nltk>=3.10
+sacrebleu>=2.6
+rouge-score>=0.1.2
+# Chapter 7 - Question answering (Haystack 3 + Hugging Face integrations, no Elasticsearch server needed)
+haystack-ai>=3.3,<4
+transformers-haystack>=1.0
+sentence-transformers-haystack>=0.2
+sentence-transformers>=6
+# Chapter 8 - Model compression
+optuna>=5
+onnx>=1.23
+onnxscript>=0.7 # used by torch.onnx.export
+onnxruntime>=1.30
+# Chapter 9 - Few labels
+nlpaug>=1.1.11
+scikit-multilearn==0.2.0
+faiss-cpu>=1.15 # nearest-neighbour index for the embedding-based classifier section
+sacremoses # tokenizer of the facebook/wmt19-* back-translation models (no longer pulled in by transformers)
+# Chapter 10 - Pretraining
+psutil
+tensorboard
+# Chapter 11 - Future directions (audio decoding; also needs the ffmpeg system libraries)
+torchcodec>=0.17
+soundfile
+librosa
+timm
